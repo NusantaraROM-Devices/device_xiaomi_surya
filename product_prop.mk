@@ -42,6 +42,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.surface_flinger.max_frame_buffer_acquired_buffers=3 \
     debug.sf.latch_unsignaled=1 \
     debug.sf.disable_backpressure=1
+    vendor.display.disable_rotator_downscale=1
 
 # Recorder
 PRODUCT_PRODUCT_PROPERTIES += \
