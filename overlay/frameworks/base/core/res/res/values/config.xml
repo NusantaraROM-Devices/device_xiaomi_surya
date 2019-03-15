@@ -374,4 +374,7 @@
     <bool name="config_pinnerCameraApp">true</bool>
     <bool name="config_pinnerHomeApp">true</bool>
 
+    <!-- Enable Zram writeback feature to allow unused pages in zram be written to flash. -->
+    <bool name="config_zramWriteback">true</bool>
+
 </resources>
