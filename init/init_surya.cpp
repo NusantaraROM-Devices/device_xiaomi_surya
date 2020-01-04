@@ -32,6 +32,7 @@
 #include <android-base/properties.h>
 #define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
 #include <sys/_system_properties.h>
+#include <sys/sysinfo.h>
 
 using android::base::GetProperty;
 
@@ -73,6 +74,27 @@ void set_ro_product_prop(const std::string &prop, const std::string &value) {
     }
 };
 
+void load_dalvik_properties() {
+    struct sysinfo sys;
+
+    sysinfo(&sys);
+    if (sys.totalram < 7000ull * 1024 * 1024) {
+        // 6GB RAM
+        property_override("dalvik.vm.heapstartsize", "16m");
+        property_override("dalvik.vm.heaptargetutilization", "0.5");
+        property_override("dalvik.vm.heapmaxfree", "32m");
+    } else {
+        // 8GB RAM
+        property_override("dalvik.vm.heapstartsize", "24m");
+        property_override("dalvik.vm.heaptargetutilization", "0.46");
+        property_override("dalvik.vm.heapmaxfree", "48m");
+    }
+
+    property_override("dalvik.vm.heapgrowthlimit", "256m");
+    property_override("dalvik.vm.heapsize", "512m");
+    property_override("dalvik.vm.heapminfree", "8m");
+}
+
 void vendor_load_properties() {
     std::string hardware_revision = GetProperty("ro.boot.hwversion", "");
     std::string hwname = GetProperty("ro.boot.hwname", "");
@@ -100,4 +122,6 @@ void vendor_load_properties() {
     set_ro_product_prop("device", device);
     set_ro_product_prop("model", model);
     property_override("ro.boot.hardware.revision", hardware_revision.c_str());
+
+    load_dalvik_properties();
 }
