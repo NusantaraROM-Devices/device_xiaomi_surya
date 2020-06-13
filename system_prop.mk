@@ -19,3 +19,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 #system props for the MM modules
 PRODUCT_PROPERTY_OVERRIDES += \
 	vendor.mm.enable.qcom_parser=131071983
+
+# Zygote
+PRODUCT_PROPERTY_OVERRIDES += \
+     persist.device_config.runtime_native.usap_pool_enabled=true
+
