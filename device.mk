@@ -126,7 +126,8 @@ PRODUCT_PACKAGES += \
 
 # Product init
 PRODUCT_PACKAGES += \
-    init.device.rc
+    init.device.rc \
+    init.safailnet.rc
 
 # Telephony
 PRODUCT_PACKAGES += \
