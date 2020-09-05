@@ -28,3 +28,8 @@ PRODUCT_PRODUCT_PROPERTIES += \
 # Enable inband ringing
 PRODUCT_PRODUCT_PROPERTIES += \
     persist.bluetooth.disableinbandringing=false
+
+# Recorder
+PRODUCT_PRODUCT_PROPERTIES += \
+    persist.vendor.audio.fluence.voicerec=true \
+    persist.vendor.audio.fluence.audiorec=true
