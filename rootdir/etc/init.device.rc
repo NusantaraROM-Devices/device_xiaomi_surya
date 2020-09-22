@@ -16,6 +16,11 @@ on property:init.svc.vendor.cnss_diag=running
 on property:init.svc.vendor.tcpdump=running
     stop vendor.tcpdump
 
+
+on early-init
+    # Disable UFS clock scaling
+    write /sys/bus/platform/devices/1d84000.ufshc/clkscale_enable 0
+
 on late-init
     # Start services for bootanim
     start surfaceflinger
@@ -24,7 +29,10 @@ on late-init
     start vendor.configstore-hal
     start vendor.qti.hardware.display.allocator
 
-# perf tuning
+on property:sys.boot_completed=1
+    # Enable UFS clock scaling back
+    write /sys/bus/platform/devices/1d84000.ufshc/clkscale_enable 1
+
 on property:vendor.post_boot.parsed=1
     # Setup runtime cpusets
     write /dev/cpuset/top-app/cpus 0-7
