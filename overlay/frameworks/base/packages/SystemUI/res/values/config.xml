@@ -26,4 +26,8 @@
     <bool name="doze_double_tap_reports_touch_coordinates">true</bool>
     <bool name="doze_suspend_display_state_supported">true</bool>
     <string name="doze_brightness_sensor_type">com.google.sensor.binned_brightness</string>
+
+    <!-- Should we vibrate on an icon animation of the shelf. This should only be active if the
+     vibrator is capable of subtle vibrations -->
+    <bool name="config_vibrateOnIconAnimation">true</bool>
 </resources>
