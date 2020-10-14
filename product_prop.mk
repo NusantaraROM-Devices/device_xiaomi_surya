@@ -16,6 +16,10 @@ endif
 PRODUCT_PRODUCT_PROPERTIES += \
     vendor.camera.aux.packagelist=org.lineageos.snap,net.sourceforge.opencamera,org.codeaurora.snapcam
 
+# Smart fps switching
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.vendor.smart_dfps.enable=false
+
 # Telephony
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.telephony.default_network=22,22 \
