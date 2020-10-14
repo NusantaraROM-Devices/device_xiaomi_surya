@@ -3,17 +3,12 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
-# ADB
+
 # Get rid of that by overriding it in /product
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.secure=0 \
-    ro.adb.secure=0 \
-    ro.control_privapp_permissions=log \
-    vendor.camera.aux.packagelist=org.lineageos.snap,net.sourceforge.opencamera,org.codeaurora.snapcam \
-    media.settings.xml=/vendor/etc/media_profiles_vendor.xml
 
 # Camera
 PRODUCT_PRODUCT_PROPERTIES += \
+    media.settings.xml=/vendor/etc/media_profiles_vendor.xml \
     vendor.camera.aux.packagelist=org.lineageos.snap,net.sourceforge.opencamera,org.codeaurora.snapcam
 
 # Telephony
