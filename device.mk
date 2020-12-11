@@ -54,6 +54,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     charger_res_images
 
+PRODUCT_PACKAGES += \
+	libmedia_jni_shim
+
 # Device Settings
 PRODUCT_PACKAGES += \
     XiaomiParts
