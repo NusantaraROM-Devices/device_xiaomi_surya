@@ -31,6 +31,12 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_PRODUCT_PROPERTIES += \
     persist.bluetooth.disableinbandringing=false
 
+# Graphics
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.surface_flinger.force_hwc_copy_for_virtual_displays=true \
+    debug.sf.latch_unsignaled=1 \
+    debug.sf.disable_backpressure=1
+
 # Recorder
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.vendor.audio.sdk.fluencetype=fluence \
