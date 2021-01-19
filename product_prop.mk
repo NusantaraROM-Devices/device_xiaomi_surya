@@ -19,7 +19,6 @@ PRODUCT_PRODUCT_PROPERTIES += \
 # Graphics
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.surface_flinger.force_hwc_copy_for_virtual_displays=true \
-    debug.hwui.renderer=skiavk \
     debug.sf.disable_backpressure=1 \
     debug.sf.latch_unsignaled=1
 
