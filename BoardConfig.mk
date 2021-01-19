@@ -56,11 +56,9 @@ TARGET_USES_QTI_CAMERA_DEVICE := true
 BOARD_CHARGER_ENABLE_SUSPEND := true
 
 # Dex
-ifeq ($(HOST_OS),linux)
-  ifneq ($(TARGET_BUILD_VARIANT),eng)
-    WITH_DEXPREOPT ?= true
-  endif
-endif
+WITH_DEXPREOPT_DEBUG_INFO := false
+DONT_DEXPREOPT_PREBUILTS := true
+USE_DEX2OAT_DEBUG := false
 
 # Display
 TARGET_USES_HWC2 := true
