@@ -38,6 +38,6 @@ public class BootCompletedReceiver extends BroadcastReceiver {
         DiracUtils.initialize();
         DozeUtils.checkDozeService(context);
         HapticUtils.restoreLevel(context);
-        ThermalUtils.initialize(context);
+        ThermalUtils.startService(context);
     }
 }
