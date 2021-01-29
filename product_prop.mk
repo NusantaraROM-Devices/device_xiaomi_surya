@@ -40,9 +40,9 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.surface_flinger.force_hwc_copy_for_virtual_displays=true \
     ro.surface_flinger.max_frame_buffer_acquired_buffers=3 \
-    debug.sf.latch_unsignaled=1 \
     debug.sf.disable_backpressure=1
-    vendor.display.disable_rotator_downscale=1
+    vendor.display.disable_rotator_downscale=1 \
+    ro.surface_flinger.has_wide_color_display=false
 
 # WFD
 PRODUCT_PRODUCT_PROPERTIES += \
