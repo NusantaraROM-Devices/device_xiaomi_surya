@@ -18,7 +18,10 @@ PRODUCT_PRODUCT_PROPERTIES += \
 
 # Graphics
 PRODUCT_PRODUCT_PROPERTIES += \
-    ro.surface_flinger.force_hwc_copy_for_virtual_displays=true
+    ro.surface_flinger.force_hwc_copy_for_virtual_displays=true \
+    debug.hwui.renderer=skiavk \
+    debug.sf.disable_backpressure=1 \
+    debug.sf.latch_unsignaled=1
 
 # Smart fps switching
 PRODUCT_PRODUCT_PROPERTIES += \
@@ -39,7 +42,6 @@ PRODUCT_PRODUCT_PROPERTIES += \
 # WFD
 PRODUCT_PRODUCT_PROPERTIES += \
     debug.sf.enable_hwc_vds=1 \
-    debug.sf.latch_unsignaled=1 \
     persist.debug.wfd.enable=1 \
     persist.sys.wfd.virtual=0
 
