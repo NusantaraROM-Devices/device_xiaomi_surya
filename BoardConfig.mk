@@ -10,6 +10,8 @@ DEVICE_PATH := device/xiaomi/surya
 
 BUILD_BROKEN_DUP_RULES := true
 
+BOARD_VENDOR := xiaomi
+
 # Inherit from proprietary configuration
 include vendor/xiaomi/surya/BoardConfigVendor.mk
 

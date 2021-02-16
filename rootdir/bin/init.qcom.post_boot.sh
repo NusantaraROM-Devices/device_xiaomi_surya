@@ -29,29 +29,6 @@
 
 target=`getprop ro.board.platform`
 
-function configure_read_ahead_kb_values() {
-    MemTotalStr=`cat /proc/meminfo | grep MemTotal`
-    MemTotal=${MemTotalStr:16:8}
-
-    dmpts=$(ls /sys/block/*/queue/read_ahead_kb | grep -e dm -e mmc)
-
-    # Set 128 for <= 3GB &
-    # set 512 for >= 4GB targets.
-    if [ $MemTotal -le 3145728 ]; then
-        echo 128 > /sys/block/mmcblk0/bdi/read_ahead_kb
-        echo 128 > /sys/block/mmcblk0rpmb/bdi/read_ahead_kb
-        for dm in $dmpts; do
-            echo 128 > $dm
-        done
-    else
-        echo 512 > /sys/block/mmcblk0/bdi/read_ahead_kb
-        echo 512 > /sys/block/mmcblk0rpmb/bdi/read_ahead_kb
-        for dm in $dmpts; do
-            echo 512 > $dm
-        done
-    fi
-}
-
 function configure_memory_parameters() {
     # Set Memory parameters.
     #
@@ -99,10 +76,13 @@ function configure_memory_parameters() {
     # use Google default LMK series for all 64-bit targets >=2GB.
     echo 1 > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
     echo 1 > /sys/module/lowmemorykiller/parameters/oom_reaper
-
-    echo 1 > /proc/sys/vm/watermark_scale_factor
-    configure_read_ahead_kb_values
 }
+
+# Apply settings for sm6150
+# Set the default IRQ affinity to the silver cluster. When a
+# CPU is isolated/hotplugged, the IRQ affinity is adjusted
+# to one of the CPU from the default IRQ affinity mask.
+echo 3f > /proc/irq/default_smp_affinity
 
 if [ -f /sys/devices/soc0/soc_id ]; then
     soc_id=`cat /sys/devices/soc0/soc_id`
@@ -110,33 +90,31 @@ else
     soc_id=`cat /sys/devices/system/soc/soc0/id`
 fi
 
-# Configuration for SM6150
 case "$soc_id" in
         "355" | "369" | "377" | "380" | "384" )
 
-    # Core control parameters on silver
-    echo 0 0 0 0 1 1 > /sys/devices/system/cpu/cpu0/core_ctl/not_preferred
-    echo 4 > /sys/devices/system/cpu/cpu0/core_ctl/min_cpus
-    echo 60 > /sys/devices/system/cpu/cpu0/core_ctl/busy_up_thres
-    echo 40 > /sys/devices/system/cpu/cpu0/core_ctl/busy_down_thres
-    echo 100 > /sys/devices/system/cpu/cpu0/core_ctl/offline_delay_ms
-    echo 0 > /sys/devices/system/cpu/cpu0/core_ctl/is_big_cluster
-    echo 8 > /sys/devices/system/cpu/cpu0/core_ctl/task_thres
-    echo 0 > /sys/devices/system/cpu/cpu6/core_ctl/enable
+    # Setting b.L scheduler parameters
+    echo 25 > /proc/sys/kernel/sched_downmigrate_boosted
+    echo 25 > /proc/sys/kernel/sched_upmigrate_boosted
+    echo 85 > /proc/sys/kernel/sched_downmigrate
+    echo 95 > /proc/sys/kernel/sched_upmigrate
 
-    # default sched up and down migrate values are 100 and 95
-    echo 85 > /proc/sys/kernel/sched_group_downmigrate
-    echo 100 > /proc/sys/kernel/sched_group_upmigrate
-    echo 0 > /proc/sys/kernel/sched_walt_rotate_big_tasks
+    # configure governor settings for little cluster
+    echo "schedutil" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+    echo 500 > /sys/devices/system/cpu/cpu0/cpufreq/schedutil/up_rate_limit_us
+    echo 20000 > /sys/devices/system/cpu/cpu0/cpufreq/schedutil/down_rate_limit_us
 
-    # colocation v3 settings
-    echo 740000 > /proc/sys/kernel/sched_little_cluster_coloc_fmin_khz
+    # configure governor settings for big cluster
+    echo "schedutil" > /sys/devices/system/cpu/cpu6/cpufreq/scaling_governor
+    echo 500 > /sys/devices/system/cpu/cpu6/cpufreq/schedutil/up_rate_limit_us
+    echo 20000 > /sys/devices/system/cpu/cpu6/cpufreq/schedutil/down_rate_limit_us
 
-    # sched_load_boost as -6 is equivalent to target load as 85. It is per cpu tunable.
-    echo -6 >  /sys/devices/system/cpu/cpu6/sched_load_boost
-    echo -6 >  /sys/devices/system/cpu/cpu7/sched_load_boost
+    # Configure default schedTune value for foreground/top-app
+    echo 1 > /dev/stune/foreground/schedtune.prefer_idle
+    echo 10 > /dev/stune/top-app/schedtune.boost
+    echo 1 > /dev/stune/top-app/schedtune.prefer_idle
 
-    # Set memory parameters
+    # Set Memory parameters
     configure_memory_parameters
 
     # Enable bus-dcvs
@@ -196,34 +174,46 @@ case "$soc_id" in
             echo 10 > $latfloor/polling_interval
         done
     done
+
+    # cpuset parameters
+    echo 0-7     > /dev/cpuset/top-app/cpus
+    echo 0-5,7 > /dev/cpuset/foreground/cpus
+    echo 4-5     > /dev/cpuset/background/cpus
+    echo 2-5     > /dev/cpuset/system-background/cpus
+    echo 2-5     > /dev/cpuset/restricted/cpus
+
+    # Enable idle state listener
+    echo 1 > /sys/class/drm/card0/device/idle_encoder_mask
+    echo 100 > /sys/class/drm/card0/device/idle_timeout_ms
+
+    # Turn on sleep modes.
+    echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
     ;;
 esac
 
-# Configuration for SDMMAGPIE
 case "$soc_id" in
     "365" | "366" )
 
-    # Core control parameters on silver
-    echo 0 0 0 0 1 1 > /sys/devices/system/cpu/cpu0/core_ctl/not_preferred
-    echo 4 > /sys/devices/system/cpu/cpu0/core_ctl/min_cpus
-    echo 60 > /sys/devices/system/cpu/cpu0/core_ctl/busy_up_thres
-    echo 40 > /sys/devices/system/cpu/cpu0/core_ctl/busy_down_thres
-    echo 100 > /sys/devices/system/cpu/cpu0/core_ctl/offline_delay_ms
-    echo 0 > /sys/devices/system/cpu/cpu0/core_ctl/is_big_cluster
-    echo 8 > /sys/devices/system/cpu/cpu0/core_ctl/task_thres
-    echo 0 > /sys/devices/system/cpu/cpu6/core_ctl/enable
+    # Setting b.L scheduler parameters
+    echo 25 > /proc/sys/kernel/sched_downmigrate_boosted
+    echo 25 > /proc/sys/kernel/sched_upmigrate_boosted
+    echo 85 > /proc/sys/kernel/sched_downmigrate
+    echo 95 > /proc/sys/kernel/sched_upmigrate
 
-    # default sched up and down migrate values are 100 and 95
-    echo 85 > /proc/sys/kernel/sched_group_downmigrate
-    echo 100 > /proc/sys/kernel/sched_group_upmigrate
-    echo 0 > /proc/sys/kernel/sched_walt_rotate_big_tasks
+    # configure governor settings for little cluster
+    echo "schedutil" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+    echo 500 > /sys/devices/system/cpu/cpu0/cpufreq/schedutil/up_rate_limit_us
+    echo 20000 > /sys/devices/system/cpu/cpu0/cpufreq/schedutil/down_rate_limit_us
 
-    # colocation v3 settings
-    echo 740000 > /proc/sys/kernel/sched_little_cluster_coloc_fmin_khz
+    # configure governor settings for big cluster
+    echo "schedutil" > /sys/devices/system/cpu/cpu6/cpufreq/scaling_governor
+    echo 500 > /sys/devices/system/cpu/cpu6/cpufreq/schedutil/up_rate_limit_us
+    echo 20000 > /sys/devices/system/cpu/cpu6/cpufreq/schedutil/down_rate_limit_us
 
-    # sched_load_boost as -6 is equivalent to target load as 85. It is per cpu tunable.
-    echo -6 >  /sys/devices/system/cpu/cpu6/sched_load_boost
-    echo -6 >  /sys/devices/system/cpu/cpu7/sched_load_boost
+    # Configure default schedTune value for foreground/top-app
+    echo 1 > /dev/stune/foreground/schedtune.prefer_idle
+    echo 10 > /dev/stune/top-app/schedtune.boost
+    echo 1 > /dev/stune/top-app/schedtune.prefer_idle
 
     # Set Memory parameters
     configure_memory_parameters
@@ -302,7 +292,24 @@ case "$soc_id" in
             echo 10 > $latfloor/polling_interval
         done
     done
+
+    # cpuset parameters
+    echo 0-7     > /dev/cpuset/top-app/cpus
+    echo 0-5,7 > /dev/cpuset/foreground/cpus
+    echo 4-5     > /dev/cpuset/background/cpus
+    echo 2-5     > /dev/cpuset/system-background/cpus
+    echo 2-5     > /dev/cpuset/restricted/cpus
+
+    # Enable idle state listener
+    echo 1 > /sys/class/drm/card0/device/idle_encoder_mask
+    echo 100 > /sys/class/drm/card0/device/idle_timeout_ms
+
+    # Turn on sleep modes.
+    echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
     ;;
 esac
+
+# Enable PowerHAL hint processing
+setprop vendor.powerhal.init 1
 
 setprop vendor.post_boot.parsed 1
