@@ -179,6 +179,10 @@ ro.frp.pst=/dev/block/bootdevice/by-name/frp
 ro.soc.manufacturer=Qualcomm
 ro.soc.model=SM7150
 
+# Chipset
+ro.soc.manufacturer=Qualcomm
+ro.soc.model=SM7150
+
 # HVDCP
 persist.vendor.cp.fcc_main_ua=400000
 persist.vendor.cp.taper_term_mv=6500
