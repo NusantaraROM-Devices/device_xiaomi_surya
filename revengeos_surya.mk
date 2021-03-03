@@ -9,6 +9,9 @@ $(call inherit-product, device/xiaomi/surya/device.mk)
 # Inherit some common RevengeOS stuff.
 $(call inherit-product, vendor/revengeos/config/common.mk)
 
+# Bootanimation Resolution
+TARGET_BOOT_ANIMATION_RES := 1080
+
 # Device identifier. This must come after all inclusions.
 PRODUCT_NAME := revengeos_surya
 PRODUCT_DEVICE := surya
