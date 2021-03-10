@@ -51,6 +51,9 @@ on early-init
     write /sys/block/dm-2/queue/read_ahead_kb 2048
     write /sys/block/dm-3/queue/read_ahead_kb 2048
 
+    # Setup permissions for schedtune boost to allow parts to write to it
+    chmod 646 /dev/stune/top-app/schedtune.boost
+
 on late-init
     # Start services for bootanim
     start surfaceflinger
