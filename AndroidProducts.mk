@@ -5,9 +5,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/revengeos_surya.mk
+    $(LOCAL_DIR)/nad_surya.mk
 
 COMMON_LUNCH_CHOICES := \
-    revengeos_surya-user \
-    revengeos_surya-userdebug \
-    revengeos_surya-eng
+    nad_surya-user \
+    nad_surya-userdebug \
+    nad_surya-eng
