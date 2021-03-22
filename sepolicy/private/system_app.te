@@ -8,3 +8,10 @@ allow system_app sysfs_kgsl:file r_file_perms;
 allow system_app sysfs_graphics:dir search;
 allow system_app sysfs_graphics:file r_file_perms;
 get_prop(system_app, vendor_camera_prop);
+
+# FPS Tile
+allow system_app sysfs_leds:dir { search };
+allow system_app sysfs_fpsinfo:file { read };
+allow system_app sysfs_fpsinfo:file rw_file_perms;
+allow system_app sysfs_fpsinfo:dir search;
+allow system_app sysfs:file { getattr };
