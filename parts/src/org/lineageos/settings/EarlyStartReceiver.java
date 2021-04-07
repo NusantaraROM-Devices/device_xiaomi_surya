@@ -16,21 +16,21 @@
 
 package org.lineageos.settings;
 
-import android.os.Bundle;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Parcel;
+import android.os.RemoteException;
+import android.os.ServiceManager;
 
-import androidx.preference.PreferenceFragment;
+import org.lineageos.settings.utils.RefreshRateUtils;
 
-
-public class MainFragment extends PreferenceFragment {
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
-    }
+public class EarlyStartReceiver extends BroadcastReceiver {
 
     @Override
-    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        addPreferencesFromResource(R.xml.main);
+    public void onReceive(final Context context, Intent intent) {
+        // Set FPS to 120hz on lock screen so that screen isn't laggy until .BootCompletedReceiver kicks in
+        // Note that we do not have data access at this time (direct boot)
+        RefreshRateUtils.setFPS(4);
     }
 }
