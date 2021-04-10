@@ -1,5 +1,0 @@
-type dpmd_files, domain;
-type dpmd_files_exec, exec_type, file_type;
-
-# Started by init
-init_daemon_domain(dpmd_files)
