@@ -116,9 +116,7 @@ PRODUCT_PACKAGES += \
     FrameworksResCommon \
     FrameworksResTarget \
     DevicesOverlay \
-    DevicesAndroidOverlay \
-    NoCutoutOverlay \
-    NotchBarKiller
+    DevicesAndroidOverlay
 
 # Permissions
 PRODUCT_COPY_FILES += \
