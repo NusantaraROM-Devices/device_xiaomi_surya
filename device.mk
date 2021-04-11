@@ -63,7 +63,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libdisplayconfig \
     libqdMetaData \
-    libqdMetaData.system
+    libqdMetaData.system \
+    vendor.display.config@1.12
 
 # Fastbootd
 PRODUCT_PACKAGES += \
