@@ -75,6 +75,10 @@ on boot
     # Set thermal mode to evaluation
     chown system system /sys/class/thermal/thermal_message/sconfig
 
+    # Restrict permissions to socket file 
+    # to hide Magisk & co.
+    chmod 440 /proc/net/unix
+
 service vendor.pd_mapper /vendor/bin/pd-mapper
     class core
     user system
