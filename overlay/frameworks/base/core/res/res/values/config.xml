@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+<!-- UI stuff -->
+    <bool name="config_allowAllRotations">true</bool>
+    <bool name="config_showNavigationBar">true</bool>
+    <bool name="config_unplugTurnsOnScreen">true</bool>
+    <integer name="config_multiuserMaxRunningUsers">3</integer>
+
+<!-- Brightness -->
+    <integer name="config_autoBrightnessBrighteningLightDebounce">1000</integer>
+    <integer name="config_autoBrightnessDarkeningLightDebounce">2000</integer>
+    <bool name="config_automatic_brightness_available">true</bool>
+    <integer-array name="config_ambientBrighteningThresholds">
+        <item>100</item>
+    </integer-array>
+    <integer-array name="config_ambientDarkeningThresholds">
+        <item>200</item>
+    </integer-array>
+    <integer-array name="config_autoBrightnessLcdBacklightValues">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+        <item>35</item>
+        <item>40</item>
+        <item>45</item>
+        <item>50</item>
+        <item>55</item>
+        <item>60</item>
+        <item>65</item>
+        <item>70</item>
+        <item>75</item>
+        <item>80</item>
+        <item>85</item>
+        <item>90</item>
+        <item>95</item>
+        <item>100</item>
+        <item>105</item>
+        <item>110</item>
+        <item>115</item>
+        <item>120</item>
+        <item>125</item>
+        <item>130</item>
+        <item>135</item>
+        <item>140</item>
+        <item>145</item>
+        <item>150</item>
+        <item>155</item>
+        <item>160</item>
+        <item>165</item>
+        <item>170</item>
+        <item>180</item>
+        <item>190</item>
+        <item>200</item>
+        <item>210</item>
+        <item>220</item>
+        <item>230</item>
+        <item>240</item>
+        <item>255</item>
+    </integer-array>
+    <integer-array name="config_autoBrightnessLevels">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+        <item>35</item>
+        <item>40</item>
+        <item>45</item>
+        <item>50</item>
+        <item>55</item>
+        <item>60</item>
+        <item>65</item>
+        <item>70</item>
+        <item>75</item>
+        <item>80</item>
+        <item>85</item>
+        <item>90</item>
+        <item>95</item>
+        <item>100</item>
+        <item>120</item>
+        <item>140</item>
+        <item>160</item>
+        <item>180</item>
+        <item>200</item>
+        <item>220</item>
+        <item>240</item>
+        <item>260</item>
+        <item>280</item>
+        <item>300</item>
+        <item>320</item>
+        <item>340</item>
+        <item>360</item>
+        <item>380</item>
+        <item>400</item>
+        <item>420</item>
+        <item>440</item>
+        <item>460</item>
+        <item>480</item>
+        <item>500</item>
+        <item>700</item>
+        <item>900</item>
+        <item>1100</item>
+        <item>1300</item>
+        <item>1500</item>
+        <item>1700</item>
+        <item>1900</item>
+        <item>2200</item>
+        <item>2500</item>
+        <item>3000</item>
+        <item>3500</item>
+        <item>4000</item>
+        <item>4500</item>
+    </integer-array>
+
+<!-- Bluetooth -->
+     <bool name="config_bluetooth_hfp_inband_ringing_support">true</bool>
+    <bool name="config_bluetooth_le_peripheral_mode_supported">true</bool>
+    <integer name="config_bluetooth_idle_cur_ma">3</integer>
+    <integer name="config_bluetooth_operating_voltage_mv">3700</integer>
+    <integer name="config_bluetooth_rx_cur_ma">20</integer>
+    <integer name="config_bluetooth_tx_cur_ma">33</integer>
+
+<!-- TBD -->
+    <bool name="config_dozeAfterScreenOffDefault">true</bool>
+    <bool name="config_smartChargingAvailable">true</bool>
+    <string name="config_smartChargingSysfsNode" translatable="false">/sys/class/power_supply/battery/input_suspend</string>
+    <string name="config_smartChargingSuspendValue" translatable="false">1</string>
+    <string name="config_smartChargingResumeValue" translatable="false">0</string>
+
+<!-- SysInfo -->
+    <string name="config_sysCPUTemp">/sys/class/thermal/thermal_zone0/temp</string>
+    <string name="config_sysBatteryTemp">/sys/class/power_supply/battery/temp</string>
+    <string name="config_sysGPUFreq">/sys/kernel/gpu/gpu_clock</string>
+    <string name="config_sysGPULoad">/sys/kernel/gpu/gpu_busy</string>
+    <integer name="config_sysCPUTempMultiplier">1000</integer>
+    <integer name="config_sysBatteryTempMultiplier">10</integer>
+    <string name="config_cpuTempSensor" translatable="false">/sys/class/thermal/thermal_zone0/temp</string>
+    <integer name="config_cpuTempDivider" translatable="false">1000</integer>
+
+
+<!-- VoLTE, carrier... -->
+    <bool name="config_carrier_volte_available">true</bool>
+    <bool name="config_device_volte_available">true</bool>
+    <bool name="config_carrier_volte_tty_supported">true</bool>
+    <bool name="config_carrier_wfc_ims_available">true</bool>
+    <bool name="config_device_wfc_ims_available">true</bool>
+    <string name="config_ims_package">org.codeaurora.ims</string>
+    <bool name="config_dynamic_bind_ims">true</bool>
+    <bool name="config_cellBroadcastAppLinks">true</bool>
+    <bool name="config_device_vt_available">true</bool>
+    <bool name="config_hotswapCapable">true</bool>
+    <integer name="config_num_physical_slots">2</integer>
+    <string name="config_mms_user_agent">Android-Mms/2.0</string>
+    <string name="config_mms_user_agent_profile_url">http://www.google.com/oha/rdf/ua-profile-kila.xml</string>
+    <string-array name="radioAttributes">
+        <item>1,1</item>
+        <item>0,1</item>
+        <item>7,1</item>
+    </string-array>
+
+
+<!-- Multi User -->
+    <bool name="config_enableMultiUserUI">true</bool>
+    <integer name="config_multiuserMaximumUsers">3</integer>
+
+
+<!-- WIFI DIsplay -->
+     <bool name="config_enableWifiDisplay">true</bool> <!-- check file -->
+    <bool name="config_wifiDisplaySupportsProtectedBuffers">true</bool>
+
+
+<!-- Power, doze and sleep -->
+    <bool name="config_lidControlsSleep">true</bool>
+    <bool name="config_dozeAlwaysOnEnabled">false</bool>
+    <bool name="config_displayBlanksAfterDoze">true</bool>
+    <string name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
+
+
+<!-- Hardware Display and LED -->
+    <bool name="config_setColorTransformAccelerated">true</bool>
+    <bool name="config_intrusiveNotificationLed">true</bool>
+    <integer name="config_defaultPeakRefreshRate">120</integer>
+    <string name="config_mainBuiltInDisplayCutout">M 0,0 H -36 V 91 H 36 V 0 H 0 Z</string>
+    <integer name="config_defaultDisplayDefaultColorMode">1</integer>
+    <integer-array name="config_availableColorModes">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </integer-array>
+    <array name="config_displayWhiteBalanceBaseThresholds" />
+    <array name="config_displayWhiteBalanceDecreaseThresholds" />
+    <array name="config_displayWhiteBalanceIncreaseThresholds" />
+    <array name="config_displayWhiteBalanceLowLightAmbientBiases" />
+    <array name="config_displayWhiteBalanceLowLightAmbientBrightnesses" />
+
+<!-- Audio -->
+    <bool name="config_speed_up_audio_on_mt_calls">true</bool>
+    <bool name="config_supportAudioSourceUnprocessed">true</bool>
+    <bool name="config_switch_phone_on_voice_reg_state_change">false</bool>
+    <bool name="config_useDevInputEventForAudioJack">true</bool>
+    <fraction name="config_prescaleAbsoluteVolume_index1">50.0%</fraction>
+    <fraction name="config_prescaleAbsoluteVolume_index2">75.000015%</fraction>
+    <fraction name="config_prescaleAbsoluteVolume_index3">95.00001%</fraction>
+
+<!-- WIFI and Network -->
+    <bool name="config_wifi_background_scan_support">true</bool>
+    <bool name="config_wifi_batched_scan_supported">true</bool>
+    <bool name="config_wifi_connected_mac_randomization_supported">true</bool>
+    <bool name="config_wifi_dual_band_support">true</bool>
+    <bool name="config_wifi_p2p_mac_randomization_supported">true</bool>
+    <bool name="config_wifi_softap_acs_supported">true</bool>
+    <bool name="config_wifi_softap_ieee80211ac_supported">true</bool>
+    <bool name="skip_restoring_network_selection">true</bool>
+    <bool name="config_wifi_ap_mac_randomization_supported">true</bool>
+    <bool name="config_wifi_link_probing_supported">true</bool>
+    <integer translatable="false" name="config_wifi_idle_receive_cur_ma">1</integer>
+    <integer translatable="false" name="config_wifi_active_rx_cur_ma">100</integer>
+    <integer translatable="false" name="config_wifi_tx_cur_ma">250</integer>
+    <integer translatable="false" name="config_wifi_operating_voltage_mv">3800</integer>
+    <integer translatable="false" name="config_wifiHardwareSoftapMaxClientCount">32</integer>
+    <integer name="config_wifi_framework_recovery_timeout_delay">3000</integer>
+    <bool translatable="false" name="config_wifiMinConfirmationDurationSendNetworkScoreEnabled">true</bool>
+    <bool translatable="false" name="config_wifiSaeUpgradeEnabled">false</bool>
+    <integer name="config_wifi_framework_wifi_score_bad_rssi_threshold_24GHz">-85</integer>
+    <integer name="config_wifi_framework_wifi_score_bad_rssi_threshold_5GHz">-80</integer>
+    <integer name="config_wifi_framework_wifi_score_entry_rssi_threshold_24GHz">-80</integer>
+    <integer name="config_wifi_framework_wifi_score_entry_rssi_threshold_5GHz">-75</integer>
+    <integer name="config_wifi_framework_wifi_score_good_rssi_threshold_24GHz">-65</integer>
+    <integer name="config_wifi_framework_wifi_score_good_rssi_threshold_5GHz">-60</integer>
+    <integer name="config_wifi_framework_wifi_score_low_rssi_threshold_24GHz">-75</integer>
+    <integer name="config_wifi_framework_wifi_score_low_rssi_threshold_5GHz">-70</integer>
+    <string name="config_default_dns_server">1.1.1.1</string>
+    <string name="config_wifi_tcp_buffers">524288,2097152,4194304,262144,524288,1048576</string>
+    <string-array name="config_mobile_tcp_buffers">
+        <item>5gnr:2097152,6291456,16777216,512000,2097152,8388608</item>
+        <item>lte:2097152,4194304,8388608,262144,524288,1048576</item>
+        <item>lte_ca:4096,6291456,12582912,4096,1048576,2097152</item>
+        <item>umts:4094,87380,1220608,4096,16384,1220608</item>
+        <item>hspa:4094,87380,1220608,4096,16384,1220608</item>
+        <item>hsupa:4094,87380,1220608,4096,16384,1220608</item>
+        <item>hsdpa:4094,87380,1220608,4096,16384,1220608</item>
+        <item>hspap:4094,87380,1220608,4096,16384,1220608</item>
+        <item>edge:4093,26280,35040,4096,16384,35040</item>
+        <item>gprs:4092,8760,11680,4096,8760,11680</item>
+        <item>evdo:4094,87380,524288,4096,16384,262144</item>
+    </string-array>
+    <string-array name="networkAttributes">
+        <item>wifi,1,1,1,-1,true</item>
+        <item>mobile,0,0,0,-1,true</item>
+        <item>mobile_mms,2,0,4,300000,true</item>
+        <item>mobile_supl,3,0,2,300000,true</item>
+        <item>mobile_dun,4,0,2,300000,true</item>
+        <item>mobile_hipri,5,0,3,300000,true</item>
+        <item>mobile_fota,10,0,2,300000,true</item>
+        <item>mobile_ims,11,0,2,300000,true</item>
+        <item>mobile_cbs,12,0,2,300000,true</item>
+        <item>bluetooth,7,7,2,-1,true</item>
+        <item>ethernet,9,9,4,-1,true</item>
+    </string-array>
+    <bool translatable="false" name="config_wifi_fast_bss_transition_enabled">true</bool>
+    <bool translatable="false" name="config_wifi5ghzSupport">true</bool>
+  
+
+<!-- Tethering -->
+    <string name="wifi_tether_configure_ssid_default">Poco X3</string>
+    <string-array name="config_tether_bluetooth_regexs">
+        <item>bnep\\d</item>
+        <item>bt-pan</item>
+    </string-array>
+
+    <string-array name="config_tether_dhcp_range">
+        <item>192.168.42.2</item>
+        <item>192.168.42.254</item>
+        <item>192.168.43.2</item>
+        <item>192.168.43.254</item>
+        <item>192.168.44.2</item>
+        <item>192.168.44.254</item>
+        <item>192.168.45.2</item>
+        <item>192.168.45.254</item>
+        <item>192.168.46.2</item>
+        <item>192.168.46.254</item>
+        <item>192.168.47.2</item>
+        <item>192.168.47.254</item>
+        <item>192.168.48.2</item>
+        <item>192.168.48.254</item>
+        <item>192.168.49.2</item>
+        <item>192.168.49.254</item>
+        <item>192.168.50.2</item>
+        <item>192.168.50.254</item>
+        <item>192.168.51.2</item>
+        <item>192.168.51.254</item>
+    </string-array>
+    <integer-array name="config_tether_upstream_types">
+        <item>1</item>
+        <item>0</item>
+        <item>5</item>
+        <item>7</item>
+    </integer-array>
+    <string-array name="config_tether_usb_regexs">
+        <item>usb\\d</item>
+        <item>rndis\\d</item>
+    </string-array>
+    <string-array name="config_tether_wifi_regexs">
+        <item>softap0</item>
+        <item>wigig0</item>
+    </string-array>
+
+<!-- GPS -->
+    <string-array name="config_ephemeralResolverPackage">
+        <item>com.google.android.gms</item>
+    </string-array>
+
+
+
+</resources>
