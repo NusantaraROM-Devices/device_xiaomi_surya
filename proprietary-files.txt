@@ -178,8 +178,10 @@ product/vendor_overlay/29/lib64/soundfx/libvolumelistener.so|1b16cd00fd2144e860f
 # System 
 lib/libqdMetaData.so
 lib/libqdMetaData.system.so
+lib/libaudio-resampler.so
 lib64/libqdMetaData.so
 lib64/libqdMetaData.system.so
+lib64/libaudio-resampler.so
 
 # Telephony
 etc/permissions/privapp-permissions-qti.xml
