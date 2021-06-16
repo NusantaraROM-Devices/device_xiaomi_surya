@@ -31,6 +31,10 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.vendor.smart_dfps.enable=false
 
+# Enable inband ringing
+PRODUCT_PRODUCT_PROPERTIES += \
+    persist.bluetooth.disableinbandringing=false
+
 # LMKD
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.config.low_ram=false \
