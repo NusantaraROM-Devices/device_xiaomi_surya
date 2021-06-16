@@ -33,6 +33,9 @@ lib64/librefocus.so
 lib64/libqvrcamera_client.qti.so
 product/lib/vendor.qti.hardware.camera.device@1.0.so
 
+# Camera
+lib/libcameraservice.so|3ef8e89a4ef8275b0f59afe57ca72af72eee1e20
+
 # DPM - from surya QKQ1.200512.002-V12.0.4.0.QJGMIXM
 framework/tcmclient.jar
 product/bin/dpmd
