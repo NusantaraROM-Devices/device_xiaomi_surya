@@ -43,120 +43,119 @@
 #include "vendor_init.h"
 
 using android::base::GetProperty;
+using android::base::SetProperty;
 using android::init::property_set;
+using std::string;
+
+char const *heapstartsize;
+char const *heapgrowthlimit;
+char const *heapsize;
+char const *heapminfree;
+char const *heapmaxfree;
+char const *heaptargetutilization;
 
 std::vector<std::string> ro_props_default_source_order = {
     "",
+    "odm.",
     "product.",
     "system.",
     "vendor.",
 };
+
+void check_device()
+{
+    struct sysinfo sys;
+
+    sysinfo(&sys);
+
+    if (sys.totalram >= 5ull * 1024 * 1024 * 1024){
+        // from - phone-xhdpi-6144-dalvik-heap.mk
+        heapstartsize = "16m";
+        heapgrowthlimit = "256m";
+        heapsize = "512m";
+        heaptargetutilization = "0.5";
+        heapminfree = "8m";
+        heapmaxfree = "32m";
+    } else if (sys.totalram >= 7ull * 1024 * 1024 * 1024) {
+        // from - phone-xhdpi-8192-dalvik-heap.mk
+        heapstartsize = "24m";
+        heapgrowthlimit = "256m";
+        heapsize = "512m";
+        heaptargetutilization = "0.46";
+        heapminfree = "8m";
+        heapmaxfree = "48m";
+    }
+}
 
 void property_override(char const prop[], char const value[], bool add = true) {
     prop_info *pi;
 
     pi = (prop_info *)__system_property_find(prop);
     if (pi)
-    __system_property_update(pi, value, strlen(value));
+        __system_property_update(pi, value, strlen(value));
     else if (add)
-    __system_property_add(prop, strlen(prop), value, strlen(value));
+        __system_property_add(prop, strlen(prop), value, strlen(value));
 }
 
-void set_ro_build_prop(const std::string &source, 
-                       const std::string &prop,
-                       const std::string &value, 
-                       bool product = false) {
-	std::string prop_name;
+void set_device_props(const std::string fingerprint, const std::string description,
+        const std::string brand, const std::string device, const std::string model) {
+    const auto set_ro_build_prop = [](const std::string &source,
+                                      const std::string &prop,
+                                      const std::string &value) {
+        auto prop_name = "ro." + source + "build." + prop;
+        property_override(prop_name.c_str(), value.c_str(), false);
+    };
 
-	if (product) {
-		prop_name = "ro.product." + source + prop;
-	} else {
-		prop_name = "ro." + source + "build." + prop;
-	}
-	property_override(prop_name.c_str(), value.c_str(), false);
+    const auto set_ro_product_prop = [](const std::string &source,
+                                        const std::string &prop,
+                                        const std::string &value) {
+        auto prop_name = "ro.product." + source + prop;
+        property_override(prop_name.c_str(), value.c_str(), false);
+    };
+
+    for (const auto &source : ro_props_default_source_order) {
+        set_ro_build_prop(source, "fingerprint", fingerprint);
+        set_ro_product_prop(source, "brand", brand);
+        set_ro_product_prop(source, "device", device);
+        set_ro_product_prop(source, "model", model);
+    }
+
+    property_override("ro.build.fingerprint", fingerprint.c_str());
+    property_override("ro.build.description", description.c_str());
+    property_override("ro.bootimage.build.fingerprint", fingerprint.c_str());
+    property_override("ro.system_ext.build.fingerprint", fingerprint.c_str());
+    property_override("ro.com.google.clientidbase", "android-xiaomi");
+    property_override("ro.com.google.clientidbase.ax", "android-xiaomi-rvo3");
+    property_override("ro.com.google.clientidbase.ms", "android-xiaomi-rvo3");
+    property_override("ro.com.google.clientidbase.tx", "android-xiaomi-rvo3");
+    property_override("ro.com.google.clientidbase.vs", "android-xiaomi-rvo3");
+
+    property_override("ro.control_privapp_permissions", "log");
 }
 
-void set_device_props(const std::string fingerprint, 
-                      const std::string description,
-                      const std::string brand, 
-                      const std::string device, 
-                      const std::string model) {
-	for (const auto &source : ro_props_default_source_order) {
-		set_ro_build_prop(source, "fingerprint", fingerprint);
-		set_ro_build_prop(source, "brand", brand, true);
-		set_ro_build_prop(source, "device", device, true);
-		set_ro_build_prop(source, "model", model, true);
-	}
-	property_override("ro.build.fingerprint", fingerprint.c_str());
+void vendor_load_properties() {
+    std::string hwname = GetProperty("ro.boot.hwname", "");
+
+    std::string fingerprint = "google/sunfish/sunfish:11/RQ2A.210505.002/7246365:user/release-keys";
+    std::string description = "sunfish-user 11 RQ2A.210505.002 7246365 release-keys";
+
+    if (hwname == "surya") {
+        set_device_props(fingerprint, description, "POCO", "surya", "POCO X3 NFC");
+        property_override("ro.product.mod_device", "surya_global");
+    } else if (hwname == "karna") {
+        set_device_props(fingerprint, description, "POCO", "karna", "POCO X3");
+        property_override("ro.product.mod_device", "surya_in_global");
+    }
+
+    check_device();
+    SetProperty("dalvik.vm.heapstartsize", heapstartsize);
+    SetProperty("dalvik.vm.heapgrowthlimit", heapgrowthlimit);
+    SetProperty("dalvik.vm.heapsize", heapsize);
+    SetProperty("dalvik.vm.heaptargetutilization", heaptargetutilization);
+    SetProperty("dalvik.vm.heapminfree", heapminfree);
+    SetProperty("dalvik.vm.heapmaxfree", heapmaxfree);
+
+    //Safetynet workarounds
+    property_override("ro.oem_unlock_supported", "0");
+    property_override("ro.boot.verifiedbootstate", "green");
 }
-
-void load_device_properties() {
-	std::string hwname = GetProperty("ro.boot.hwname", "");
-	
-	// Set some defaults to avoid empty settings:
-	std::string model = "M2007J20CG";
-	std::string device = hwname;
-	std::string fingerprint = "POCO/surya_global/surya:10/QKQ1.200512.002/V12.0.7.0.QJGMIXM:user/release-keys";
-	std::string description = "surya_global-user 10 QKQ1.200512.002 V12.0.7.0.QJGMIXM release-keys";
-	
-	if (hwname == "surya") {
-	} else if (hwname == "karna") {
-		model = "M2007J20CI";
-	        fingerprint = "POCO/karna_global/karna:10/QKQ1.200512.002/V12.0.9.0.QJGMIXM:user/release-keys";
-	        description = "karna_global-user 10 QKQ1.200512.002 V12.0.9.0.QJGMIXM release-keys";
-	}
-      
-      	set_device_props(fingerprint, 
-		         description, 
-		         "Poco", 
-		         device, 
-		         model ); 
-}
-
-void set_nfc()
-{
-	bool enable_nfc = true;
-	std::string hwname = GetProperty("ro.boot.hwname", "");
-
-	// Valid options are "karna" and "surya"
-	if (hwname == "karna"){
-		enable_nfc = false;
-	} 
-    
-        property_override( "ro.hw.nfc", enable_nfc ? "1" : "0" );
-}
-
-void set_dalvik_values()
-{
-	static const long int mem_gigabyte = 1024ull * 1024ull * 1024ull;
-	struct sysinfo sys;
-	memset( &sys, 0, sizeof(sys ) );
-	sysinfo(&sys);
-
-	// Devices with 6Gbytes of RAM:
-	if (sys.totalram >= 5ull * mem_gigabyte ){
-	        // Copied from phone-xhdpi-6144-dalvik-heap.mk
-		property_set("dalvik.vm.heapstartsize", "16m");
-		property_set("dalvik.vm.heapgrowthlimit", "256m");
-		property_set("dalvik.vm.heapsize", "512m");
-		property_set("dalvik.vm.heaptargetutilization", "0.5");
-		property_set("dalvik.vm.heapminfree", "8m");
-		property_set("dalvik.vm.heapmaxfree", "32m");
-	} else if (sys.totalram >= 7ull * mem_gigabyte ) {
-		// Copied from phone-xhdpi-8192-dalvik-heap.mk
-		property_set("dalvik.vm.heapstartsize", "24m");
-		property_set("dalvik.vm.heapgrowthlimit", "256m");
-		property_set("dalvik.vm.heapsize", "512m");
-		property_set("dalvik.vm.heaptargetutilization", "0.46");
-		property_set("dalvik.vm.heapminfree", "8m");
-		property_set("dalvik.vm.heapmaxfree", "48m");
-	}
-}
-
-void vendor_load_properties()
-{ 
-	load_device_properties();
-	set_dalvik_values();
-	set_nfc();
-}
-
