@@ -97,7 +97,7 @@ PRODUCT_COPY_FILES += \
 
 # Lights
 PRODUCT_PACKAGES += \
-    android.hardware.light@2.0-service.surya
+    android.hardware.light@2.0-service.xiaomi_surya
 
 # NFC
 PRODUCT_PACKAGES += \
