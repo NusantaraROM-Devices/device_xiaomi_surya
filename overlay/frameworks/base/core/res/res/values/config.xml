@@ -149,13 +149,6 @@
     <integer name="config_bluetooth_rx_cur_ma">20</integer>
     <integer name="config_bluetooth_tx_cur_ma">33</integer>
 
-<!-- TBD -->
-    <bool name="config_dozeAfterScreenOffDefault">true</bool>
-    <bool name="config_smartChargingAvailable">true</bool>
-    <string name="config_smartChargingSysfsNode" translatable="false">/sys/class/power_supply/battery/input_suspend</string>
-    <string name="config_smartChargingSuspendValue" translatable="false">1</string>
-    <string name="config_smartChargingResumeValue" translatable="false">0</string>
-
 <!-- SysInfo -->
     <string name="config_sysCPUTemp">/sys/class/thermal/thermal_zone0/temp</string>
     <string name="config_sysBatteryTemp">/sys/class/power_supply/battery/temp</string>
@@ -165,7 +158,6 @@
     <integer name="config_sysBatteryTempMultiplier">10</integer>
     <string name="config_cpuTempSensor" translatable="false">/sys/class/thermal/thermal_zone0/temp</string>
     <integer name="config_cpuTempDivider" translatable="false">1000</integer>
-
 
 <!-- VoLTE, carrier... -->
     <bool name="config_carrier_volte_available">true</bool>
@@ -187,23 +179,20 @@
         <item>7,1</item>
     </string-array>
 
-
 <!-- Multi User -->
     <bool name="config_enableMultiUserUI">true</bool>
     <integer name="config_multiuserMaximumUsers">3</integer>
-
 
 <!-- WIFI DIsplay -->
      <bool name="config_enableWifiDisplay">true</bool> <!-- check file -->
     <bool name="config_wifiDisplaySupportsProtectedBuffers">true</bool>
 
-
 <!-- Power, doze and sleep -->
     <bool name="config_lidControlsSleep">true</bool>
     <bool name="config_dozeAlwaysOnEnabled">false</bool>
     <bool name="config_displayBlanksAfterDoze">true</bool>
+    <bool name="config_dozeAfterScreenOffDefault">true</bool>
     <string name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
-
 
 <!-- Hardware Display and LED -->
     <bool name="config_powerDecoupleAutoSuspendModeFromDisplay">true</bool>
@@ -438,4 +427,11 @@
          running in WAL mode.
          Choices are: FULL, NORMAL, OFF. -->
     <string name="db_wal_sync_mode">OFF</string>
+
+    <!-- Smart charge sysfs node and value for suspend/resume charging-->
+    <bool name="config_deviceSupportSmartCharging">true</bool>
+    <bool name="config_smartChargingAvailable">true</bool>
+    <string name="config_smartChargingSysfsNode" translatable="false">/sys/class/power_supply/battery/input_suspend</string>
+    <string name="config_smartChargingSuspendValue" translatable="false">1</string>
+    <string name="config_smartChargingResumeValue" translatable="false">0</string>
 </resources>
