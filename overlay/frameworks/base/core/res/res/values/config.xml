@@ -371,7 +371,8 @@
         <item>"/system/priv-app/SystemUIGoogle/SystemUIGoogle.apk"</item>
         <item>"/system/lib64/libsurfaceflinger.so"</item>
     </string-array>
-    <bool name="config_pinnerCameraApp">true</bool>
+
+    <!-- Should the pinner service pin the Home application? -->
     <bool name="config_pinnerHomeApp">true</bool>
 
     <!-- Enable Zram writeback feature to allow unused pages in zram be written to flash. -->
