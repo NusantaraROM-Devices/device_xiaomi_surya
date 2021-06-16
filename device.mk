@@ -59,6 +59,10 @@ PRODUCT_PACKAGES += \
     libqdMetaData \
     libqdMetaData.system
 
+# Doze
+PRODUCT_PACKAGES += \
+    Doze
+
 # Fastbootd
 PRODUCT_PACKAGES += \
     fastbootd
