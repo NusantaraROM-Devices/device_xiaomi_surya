@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-#define LOG_TAG "android.hardware.biometrics.fingerprint@2.1-service.xiaomi_sm6150"
+#define LOG_TAG "android.hardware.biometrics.fingerprint@2.1-service.surya"
 
 #include <android/log.h>
 #include <hidl/HidlSupport.h>
@@ -42,16 +42,6 @@ status_t BiometricsFingerprint::registerAsSystemService() {
     } else {
         ALOGI("Successfully registered IBiometricsFingerprint");
     }
-
-#ifdef XIAOMI_FINGERPRINTEXTENSION
-    ret = IXiaomiFingerprint::registerAsService();
-    if (ret != 0) {
-        ALOGE("Failed to register IXiaomiFingerprint (%d)", ret);
-        goto fail;
-    } else {
-        ALOGI("Successfully registered IXiaomiFingerprint");
-    }
-#endif /* XIAOMI_FINGERPRINTEXTENSION */
 
 fail:
     return ret;

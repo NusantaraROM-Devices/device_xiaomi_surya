@@ -14,12 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#define LOG_TAG "android.hardware.biometrics.fingerprint@2.1-service.xiaomi_sm6150"
-#define LOG_VERBOSE "android.hardware.biometrics.fingerprint@2.1-service.xiaomi_sm6150"
+#define LOG_TAG "android.hardware.biometrics.fingerprint@2.1-service.surya"
+#define LOG_VERBOSE "android.hardware.biometrics.fingerprint@2.1-service.surya"
 
 #include <hardware/hw_auth_token.h>
 
 #include <hardware/hardware.h>
+#include <hardware/fingerprint.h>
 #include "BiometricsFingerprint.h"
 
 #include <inttypes.h>
@@ -377,12 +378,6 @@ void BiometricsFingerprint::notify(const fingerprint_msg_t *msg) {
             break;
     }
 }
-
-#ifdef XIAOMI_FINGERPRINTEXTENSION
-Return<int32_t> BiometricsFingerprint::extCmd(int32_t cmd, int32_t param) {
-    return mDevice->extCmd(mDevice, cmd, param);
-}
-#endif /* XIAOMI_FINGERPRINTEXTENSION */
 
 } // namespace implementation
 }  // namespace V2_1
