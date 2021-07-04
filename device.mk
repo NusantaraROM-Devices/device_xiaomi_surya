@@ -88,7 +88,8 @@ PRODUCT_PACKAGES += \
 
 # Init
 PRODUCT_PACKAGES += \
-    init.device.rc
+    init.device.rc \
+    init.qcom.rc
 
 # IPACM
 PRODUCT_PACKAGES += \
@@ -166,6 +167,10 @@ PRODUCT_SOONG_NAMESPACES += $(LOCAL_PATH)
 # Vendor overlay
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(LOCAL_PATH)/vendor-overlay/,$(TARGET_COPY_OUT_PRODUCT)/vendor_overlay/$(PRODUCT_TARGET_VNDK_VERSION))
+
+# Product init
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/vendor-overlay/etc/init.qcom.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/init.qcom.rc
 
 # WFD
 PRODUCT_PACKAGES += \
