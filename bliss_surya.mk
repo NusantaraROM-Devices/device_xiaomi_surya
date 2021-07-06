@@ -21,17 +21,21 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 # Inherit from surya device
 $(call inherit-product, device/xiaomi/surya/device.mk)
 
-# Inherit from common RevengeOS configuration
-$(call inherit-product, vendor/revengeos/config/common.mk)
-REVENGEOS_BUILDTYPE := OFFICIAL
+# Inherit from common BlissROM configuration
+$(call inherit-product, vendor/bliss/config/common_full_phone.mk)
 
 # Bootanimation
 TARGET_BOOT_ANIMATION_RES := 1080
 
 # Device identifier
-PRODUCT_NAME := revengeos_surya
+PRODUCT_NAME := bliss_surya
 PRODUCT_DEVICE := surya
 PRODUCT_BRAND := POCO
 PRODUCT_MODEL := POCO X3
 PRODUCT_MANUFACTURER := Xiaomi
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
+
+# Inherit GApps
+BLISS_BUILD_VARIANT := gapps
+TARGET_GAPPS_ARCH := arm64
+IS_PHONE := true
