@@ -23,6 +23,7 @@ $(call inherit-product, device/xiaomi/surya/device.mk)
 
 # Inherit from common BlissROM configuration
 $(call inherit-product, vendor/bliss/config/common_full_phone.mk)
+BLISS_BUILDTYPE := OFFICIAL
 
 # Bootanimation
 TARGET_BOOT_ANIMATION_RES := 1080
