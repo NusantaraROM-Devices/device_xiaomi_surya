@@ -61,6 +61,7 @@ on post-fs-data
     chmod 0664 /sys/devices/platform/soc/884000.i2c/i2c-3/3-005a/ulevel
 
 on boot
+    start mi_thermald
     start rmt_storage
     start rfs_access
 
@@ -120,6 +121,7 @@ service mi_thermald /vendor/bin/mi_thermald
     class core
     user root
     group system
+    seclabel u:r:mi_thermald:s0
 
 service vendor.nfc_hal_service /vendor/bin/hw/android.hardware.nfc@1.2-service
     override
