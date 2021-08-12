@@ -157,6 +157,7 @@ vendor.display.disable_idle_time_video=1
 vendor.gralloc.disable_ubwc=0
 vendor.display.idle_time=0
 vendor.display.idle_time_inactive=0
+vendor.display.disable_metadata_dynamic_fps=1
 
 # Display (phase offsets)
 debug.sf.early_app_phase_offset_ns=500000
