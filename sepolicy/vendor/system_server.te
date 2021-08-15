@@ -1,1 +1,4 @@
 get_prop(system_server, vendor_fp_prop);
+
+# Smartcharging
+allow system_server sysfs_battery_supply:file { getattr open read write };
