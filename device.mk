@@ -371,6 +371,10 @@ PRODUCT_PACKAGES += \
     init.performance_level.rc \
     init.recovery.qcom.rc
 
+# Remove unwanted packages
+PRODUCT_PACKAGES += \
+    RemovePackages
+
 # Sensors
 PRODUCT_PACKAGES += \
     android.frameworks.sensorservice@1.0 \
