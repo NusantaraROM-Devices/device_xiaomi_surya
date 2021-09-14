@@ -49,10 +49,6 @@ PRODUCT_PACKAGES += \
     BluetoothQti \
     libbtconfigstore
 
-# Camera
-PRODUCT_PACKAGES += \
-    Snap
-
 # Device Settings
 PRODUCT_PACKAGES += \
     XiaomiParts
@@ -162,3 +158,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_SOONG_NAMESPACES += $(LOCAL_PATH)
 
+# GCam Go
+PRODUCT_PACKAGES += \
+    GCam
