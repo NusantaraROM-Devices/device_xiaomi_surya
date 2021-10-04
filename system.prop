@@ -58,3 +58,6 @@ persist.debug.wfd.enable=1
 
 # WiFi
 wifi.interface=wlan0
+
+# Disable vsync for cpu rendered apps
+debug.cpurend.vsync=false
