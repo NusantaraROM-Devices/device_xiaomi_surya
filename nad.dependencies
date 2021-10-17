@@ -1,0 +1,32 @@
+[
+  {
+    "remote":"github",
+    "repository":"subhajeetmuhuri/proprietary_vendor_xiaomi_surya",
+    "target_path":"vendor/xiaomi/surya",
+    "branch":"lineage-18.1"
+  },
+  {
+    "remote":"github",
+    "repository":"subhajeetmuhuri/android_kernel_xiaomi_surya",
+    "target_path":"kernel/xiaomi/surya",
+    "branch":"lineage-18.1"
+  },
+  {
+    "remote":"github",
+    "repository":"Avarice12/hardware_qcom-caf_display",
+    "target_path":"hardware/qcom-caf/sm8150/display",
+    "branch":"11-sm8150"
+  },
+  {
+    "remote":"github",
+    "repository":"Avarice12/hardware_qcom-caf_audio",
+    "target_path":"hardware/qcom-caf/sm8150/audio",
+    "branch":"11-sm8150"
+  },
+  {
+    "remote":"github",
+    "repository":"Avarice12/hardware_qcom-caf_media",
+    "target_path":"hardware/qcom-caf/sm8150/media",
+    "branch":"11-sm8150"
+  }
+]
