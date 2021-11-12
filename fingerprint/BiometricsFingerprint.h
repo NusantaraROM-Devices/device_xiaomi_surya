@@ -78,6 +78,8 @@ struct BiometricsFingerprint : public IBiometricsFingerprint {
     std::mutex mClientCallbackMutex;
     sp<IBiometricsFingerprintClientCallback> mClientCallback;
     fingerprint_device_t* mDevice;
+    Return<void> onShowUdfpsOverlay() override;
+    Return<void> onHideUdfpsOverlay() override;
 };
 
 }  // namespace implementation
