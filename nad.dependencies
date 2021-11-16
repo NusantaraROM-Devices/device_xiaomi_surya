@@ -7,9 +7,9 @@
   },
   {
     "remote":"github",
-    "repository":"subhajeetmuhuri/android_kernel_xiaomi_surya",
+    "repository":"silont-project/kernel_xiaomi_surya",
     "target_path":"kernel/xiaomi/surya",
-    "branch":"lineage-18.1"
+    "branch":"staging"
   },
   {
     "remote":"github",
