@@ -1,3 +1,7 @@
 # LMKD
 ro.config.low_ram=false
 ro.lmk.log_stats=true
+
+# VulkanAPI
+graphics.gpu.profiler.support=true
+graphics.gpu.profiler.vulkan_layer_apk=com.google.pixel.coral.gpuprofiling.vulkanlayer
