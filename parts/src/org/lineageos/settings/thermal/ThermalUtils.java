@@ -159,6 +159,27 @@ public final class ThermalUtils {
         }
     }
 
+    protected void setThermalProfileForce(int mode) {
+        String state = THERMAL_STATE_DEFAULT;
+
+        switch (mode) {
+            case STATE_BENCHMARK:
+                state = THERMAL_STATE_BENCHMARK;
+                break;
+            case STATE_CAMERA:
+                state = THERMAL_STATE_CAMERA;
+                break;
+            case STATE_DIALER:
+                state = THERMAL_STATE_DIALER;
+                break;
+            case STATE_GAMING:
+                state = THERMAL_STATE_GAMING;
+                break;
+        }
+
+        FileUtils.writeLine(THERMAL_SCONFIG, state);
+    }
+
     private void updateTouchModes(String packageName) {
         String values = mSharedPrefs.getString(packageName, null);
         resetTouchModes();
