@@ -31,6 +31,9 @@ TARGET_USES_BLUR := true
 TARGET_GAPPS_ARCH := arm64
 USE_GAPPS := true
 
+# Lawnchair
+USE_LAWNCHAIR := true
+
 # Official
 NAD_BUILD_TYPE := OFFICIAL
 
