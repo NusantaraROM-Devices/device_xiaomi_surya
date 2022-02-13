@@ -14,5 +14,8 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Overlay for maintainer -->
     <string name="maintainer_name">Reza Bagas Rifaldy</string>
+    <string name="github_username">GrettoRosella</string> 
+    <string name="telegram_username">GrettoRosella</string>
 </resources>
