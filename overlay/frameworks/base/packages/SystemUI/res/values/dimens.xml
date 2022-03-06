@@ -26,5 +26,6 @@
     <dimen name="status_bar_padding_start">15dp</dimen>
     <!-- the padding on the end of the statusbar -->
     <dimen name="status_bar_padding_end">15dp</dimen>
-    <dimen name="rounded_corner_content_padding">7.0dip</dimen>
+
+    <dimen name="rounded_corner_content_padding">15.0dip</dimen>
 </resources>
