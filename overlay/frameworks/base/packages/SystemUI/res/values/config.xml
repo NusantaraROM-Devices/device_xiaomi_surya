@@ -33,4 +33,7 @@
 
     <!-- FPSInfoService Fps file path -->
     <string name="config_fpsInfoSysNode" translatable="false">/sys/class/drm/sde-crtc-0/measured_fps</string>
+
+    <dimen name="config_buttonCornerRadius">20.0dp</dimen>
+    <dimen name="config_dialogCornerRadius">20.0dp</dimen>
 </resources>

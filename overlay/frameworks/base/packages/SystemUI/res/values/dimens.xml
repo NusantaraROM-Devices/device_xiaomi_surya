@@ -28,4 +28,6 @@
     <dimen name="status_bar_padding_end">15dp</dimen>
 
     <dimen name="rounded_corner_content_padding">15.0dip</dimen>
+
+    <dimen name="corner_size">20dp</dimen>
 </resources>

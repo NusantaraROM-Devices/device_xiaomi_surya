@@ -28,4 +28,10 @@
         orientation. If zero, the value of rounded_corner_radius is used. -->
     <dimen name="rounded_corner_radius_bottom">90.0px</dimen>
 
+    <!-- Default rounded corner for controls -->
+    <dimen name="control_corner_material">20dp</dimen>
+    <!-- Default dialog corner radius -->
+    <dimen name="dialog_corner_radius">20dp</dimen>
+    <!-- Border corner radius of the tooltip window. -->
+    <dimen name="tooltip_corner_radius">20dp</dimen>
 </resources>
