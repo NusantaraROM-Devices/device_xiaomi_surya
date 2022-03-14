@@ -43,6 +43,9 @@ NAD_BUILD_TYPE := OFFICIAL
 # Pixel Charging
 USE_PIXEL_CHARGING := true
 
+# Quick Tap
+TARGET_SUPPORTS_QUICK_TAP := true
+
 # Inherit from surya device
 $(call inherit-product, device/xiaomi/surya/device.mk)
 
