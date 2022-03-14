@@ -12,7 +12,6 @@
     <com.android.settingslib.widget.FooterPreference
         android:key="footer_preference"
         android:title="@string/clear_speaker_description"
-        android:selectable="false"
-        android:layout="@layout/preference_footer" />
+        android:selectable="false" />
 
 </PreferenceScreen>
