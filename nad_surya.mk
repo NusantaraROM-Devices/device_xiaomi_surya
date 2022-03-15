@@ -30,13 +30,6 @@ TARGET_USES_BLUR := true
 # Faceunlock
 TARGET_FACE_UNLOCK_SUPPORTED := true
 
-# GApps
-TARGET_GAPPS_ARCH := arm64
-USE_GAPPS := true
-
-# Lawnchair
-USE_LAWNCHAIR := true
-
 # Official
 NAD_BUILD_TYPE := OFFICIAL
 
